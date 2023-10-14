@@ -8,6 +8,18 @@ import { useNavigate } from "react-router-dom";
 import imm from "../icons/available.jpg"
 import AutoPlay, { Carosel } from "./Carosel";
 
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
+import { addDays } from 'date-fns';
+
+
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export const Banner = () => {
   const state = useSelector(
@@ -19,31 +31,89 @@ console.log(state)
         let [to,setto]=useState("")
         let [busidd,setbusidd]=useState(0)
         let [obj,setobj]=useState({})
-        const [value, setValue] =  useState(new Date());
+        // const [value, setValue] =  useState(new Date());
+        const [dateq, setdateq] =  useState("");
+        const [newdate,setnewdate] = useState("")
+        const [startDate, setStartDate] = useState(null);
     
         let n=useNavigate()
+
+
+
+        const getdate = () =>{
+          let today = new Date();
+          console.log(today);
+           
+          let dd = today.getDate();
+          let mm = today.getMonth() + 1;
+           
+          let yyyy = today.getFullYear();
+           
+          if (dd < 10) {
+              dd = '0' + dd;
+          }
+          if (mm < 10) {
+              mm = '0' + mm;
+          }
+          today = yyyy + '-' + mm + '-' + dd;
+           console.log(today)
+          setnewdate(today)
+
+        }
+        useEffect(getdate)
     
     
         const handleinput =(e)=>{
+
+          
         if(e.target.name==="from"){
               setfrom((e.target.value).toLowerCase())
             }
             else if(e.target.name==="to"){
                setto((e.target.value).toLowerCase())
              }
+
+
+
                     
+          }
+          
+
+          const dateset = (e) =>{
+           
+            let today = new Date();
+          console.log(today);
+           
+          let dd = today.getDate();
+          let mm = today.getMonth() + 1;
+           
+          let yyyy = today.getFullYear();
+           
+          if (dd < 10) {
+              dd = '0' + dd;
+          }
+          if (mm < 10) {
+              mm = '0' + mm;
+          }
+          today = yyyy + '-' + mm + '-' + dd;
+          
+          setdateq(today)
+           
+          console.log(today);
+            // setValue({startDate: e.target.value})
+
           }
     
           const submitt =(e)=>{
           // e.preventDefault()
            
-            let objj={from,to,value}
+            let objj={from,to}
             console.log(objj);
             setobj(objj)
             console.log(objj,obj)
           
                 let w=state.busarr.some((a,b)=>{
-                    return from===a.from &&  to === a.to && value.startDate===a.date
+                    return from===a.from &&  to === a.to && startDate
                 })
                 console.log(w)
                 if(w===true){
@@ -56,14 +126,16 @@ console.log(state)
                 }
                 else if(w===false){
                     alert("enter correct route")
+                    console.log(startDate)
                     
                 }
             
           }
           
-    
-     
+    console.log(startDate)
 
+     
+  
     return(
         <>
         <Box component="section">
@@ -76,17 +148,29 @@ console.log(state)
           <h1 style={{textAlign:"center", fontSize:"35px"}}>India s No. 1 Bus Ticket Booking Site</h1>
             <Box component="div" className="ss" sx={{display:"flex"}}>
 
-           
-
-            <Typography component="input" type="text" className="form-control from"  placeholder="From" name="from" value={from} onChange={handleinput}>  
+          <Typography component="input" type="text" className="form-control from"  placeholder="From" name="from" value={from} onChange={handleinput}>  
             </Typography>
-
+           
             <Typography component="input" type="text" className="form-control to-input"  placeholder="To" name="to" value={to} onChange={handleinput}>  
              </Typography>
 
-             <Typography component="input" type="Date" className="demo1 form-control to-input"  placeholder="Date" name="date" onChange={(event) => setValue({startDate: event.target.value})}>  
-             </Typography>
-             
+             {/* <Typography component="input" type="Date" required min={dateq} max={dateq} className="demo1 form-control to-input"  onClick={dateset}>  
+             </Typography> */}
+
+      <Typography component="div" className="" >  
+  
+     <DatePicker
+     
+      selected={startDate}
+      
+      onChange={(date) => setStartDate(date)}
+      // onChange={dateset}
+      required
+      minDate={new Date()}
+      maxDate={addDays(new Date(), 0)}
+      placeholderText="Date"
+    />
+   </Typography>
              <button className="search-btn" type="submit" onClick={()=>submitt()} variant="contained" color="error">
   Search
 </button>

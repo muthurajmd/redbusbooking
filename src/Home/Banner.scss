@@ -11,6 +11,30 @@
     border-radius:.25rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out
 }
 
+.fromm{
+
+    border-radius: 32px 0px 0px 32px;
+    // background-color: rgb(255, 255, 255);
+    }
+    .css-1869usk-MuiFormControl-root :hover{
+        background-color: #fff;
+    
+    }
+    .css-1869usk-MuiFormControl-root :focus{
+        background-color: #fff;
+    
+    }
+    .react-datepicker__input-container{
+        input{
+            border: none;
+            padding: 41px 20px;
+            background-color:#fff;
+            background-clip:padding-box;border:1px solid #ced4da;
+            -webkit-appearance:none;
+            -moz-appearance:none;appearance:none;
+            border-radius:.25rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out
+        }
+    }
 
 
     .from{

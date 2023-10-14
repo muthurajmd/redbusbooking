@@ -30,10 +30,10 @@ let [from,setfrom]=useState("")
     
         const handleinput =(e)=>{
         if(e.target.name==="from"){
-              setfrom((e.target.value).toLowerCase())
+          setfrom((e.target.value.trim()).toLowerCase())
             }
             else if(e.target.name==="to"){
-               setto((e.target.value).toLowerCase())
+               setto((e.target.value.trim()).toLowerCase())
              }
                     
           }

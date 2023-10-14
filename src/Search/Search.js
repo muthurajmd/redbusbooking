@@ -36,7 +36,11 @@ const Search = () =>{
         let [dropingradio,setradio1]=useState("")        
         let [countt,setcountt]=useState(0)
         let [available,setavailable] = useState(true)          
-        let [rating,setRating] = useState(true)          
+        let [rating,setRating] = useState(true)   
+        let [from,setfrom] = useState("")       
+        let [to,setto] = useState("")       
+        let [date,setdate] = useState("")  
+        let [gender,setgender] = useState("male")        
 
 
         let [param] = useSearchParams()
@@ -67,11 +71,14 @@ const Search = () =>{
         let qw=state.busarr.find((a,b)=>{
           return Number(d) === a.busid
       })
-
+        console.log(qw)
         let dd = qw.bus
         setarr(dd)  
         console.log(dd) 
-        console.log(qw)     
+        console.log(qw)  
+        setfrom(qw.from)
+        setto(qw.to)  
+        setdate(qw.date) 
        
         }
         useEffect(update,[state.busarr,viewarr])  
@@ -208,23 +215,43 @@ const Search = () =>{
 
           } 
     
- const booked = () =>{
-  let x = state.busarr.map((vq,i)=>{
-    return {...vq,bus:vq.bus.map((va,ind)=>{
-     return {...va,seats:va.seats.map((v,index)=>{
-             return v.isSelect === true ? {...v,isBooked:true}:v
-              
+          const booked = () =>{
+            if(gender === "male"){
+            let x = state.busarr.map((vq,i)=>{
+              return {...vq,bus:vq.bus.map((va,ind)=>{
+               return {...va,seats:va.seats.map((v,index)=>{
+                       return v.isSelect === true ? {...v,isBooked:true}:v
+                        
+                      })
+                    }  
+                }) 
+              }
             })
-          }  
-      }) 
-    }
-  })
-
-  console.log(x)
-  dispatch(Updatearr(x)) 
-  alert("successfully booked")
- n('/')
- }
+            console.log(x)
+            dispatch(Updatearr(x)) 
+            alert("successfully booked")
+           n('/')
+          
+          }
+          if(gender==="female"){
+            let x = state.busarr.map((vq,i)=>{
+              return {...vq,bus:vq.bus.map((va,ind)=>{
+               return {...va,seats:va.seats.map((v,index)=>{
+                       return v.isSelect === true ? {...v,isBooked:true,isGender:true}:v
+                        
+                      })
+                    }  
+                }) 
+              }
+            })
+            dispatch(Updatearr(x))
+            alert("successfully booked")
+            n('/')
+            // console.log(x)
+          }
+          
+           
+           }
 
    const closefun = () =>{
     clear()
@@ -344,11 +371,13 @@ return(
              <Typography component="div" px={5} py={2} sx={{display:"flex", justifyContent:"space-between",alignItems:"center",borderBottom:"0.75px solid #ddd"}} className="d-flex justify-content-between align-items-center py-2 px-5 border-bottom shadow">
                  <Typography component="div" sx={{width:"33%"}}>
                      <Typography component="div" sx={{display:"flex",alignItems:"center"}}>
-                     <span className="fw-bold">Madurai</span>
+                     <span className="fw-bold">{from}</span>
                      <Typography component="div" px={2} >
                      <BsArrowRight/>
                      </Typography>
-                     <span>Chennai</span>                                                  
+                     <span>{to}</span> 
+                     {/* <span style={{paddingLeft:"20px"}}> DATE {date}</span>  */}
+
                  </Typography> 
                  </Typography>                                                   
              </Typography>                                               
@@ -439,7 +468,7 @@ return(
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography component="div" onClick={()=>view(val.busno)}  style={{color:"white",backgroundColor:"#d84e55",padding:"0px 5px",marginBottom:"4px"}}> 
+          <Typography component="div" onClick={()=>view(val.busno)}  style={{color:"white",backgroundColor:"#d84e55",padding:"0px 5px",marginBottom:"4px",display:"flex",justifyContent:"end"}}> 
                 View Seats
               </Typography>
         </AccordionSummary>
@@ -453,9 +482,13 @@ return(
 return(
   <>
  
-  {v.isSelect ? (v.isBooked ? <img style={{margin:"5px 10px"}} src={v.unavailable} alt=""/> : <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"0px 10px",color:"black", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"red") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> )  
+ {v.isSelect ? 
+             (v.isBooked ?  (v.isGender ?  <img style={{margin:"5px 10px"}} src={v.image} alt=""/> :
+              
+              <img style={{margin:"5px 10px"}} src={v.unavailable} alt=""/> ) : 
+  <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"0px 10px",color:"black", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"red") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> )  
 
-  : <img style={{margin:"5px 10px"}} src={v.available} onClick={()=>change(v,i,val.busno)} alt=""/> }
+  : <img style={{margin:"5px 10px",cursor:"pointer"}} src={v.available} onClick={()=>change(v,i,val.busno)} alt=""/> }
   </>
 )
 
@@ -559,8 +592,13 @@ return(
 
 return(
 <>
-{v.isSelect ? (v.isBooked ? <img style={{margin:"5px 10px"}} src={v.unavailable} alt=""/> : <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"5px 10px",color:"black", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"red") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> ) 
-  : <img style={{margin:"5px 10px"}} src={v.available} onClick={()=>change(v,i,val.busno)} alt=""/> }
+{v.isSelect ? 
+             (v.isBooked ?  (v.isGender ?  <img style={{margin:"5px 10px"}} src={v.image} alt=""/> :
+              
+              <img style={{margin:"5px 10px"}} src={v.unavailable} alt=""/> ) : 
+  <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"0px 10px",color:"black", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"red") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> )  
+
+  : <img style={{margin:"5px 10px",cursor:"pointer"}} src={v.available} onClick={()=>change(v,i,val.busno)} alt=""/> }
 </>
 )
 })
@@ -581,7 +619,7 @@ return(
   <h3 onClick={boarding} style={{cursor:"pointer",display:"inline-block",borderBottom:Boarding? "3px solid red":""}}>Boarding point</h3>
   </div>
   <div style={{width:"50%",textAlign:"center",color:Droping?"red":"black"}}>
-  <h3 onClick={dropingg} style={{cursor:"pointer",display:"inline-block",borderBottom:Droping? "3px solid red":""}}>Droping point</h3>
+  <h3 onClick={dropingg} style={{cursor:"pointer",display:"inline-block",borderBottom:Droping? "3px solid red":""}}>Dropping point</h3>
   </div>
   </div>
 
@@ -647,7 +685,23 @@ return(
        )
    })
    }
-   </p>   
+   </p>
+
+   <FormControl sx={{padding:"0px 15px"}}>
+      {/* <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel> */}
+      <RadioGroup
+        aria-labelledby="demo-radio-buttons-group-label"
+        defaultValue="Male"
+        name="radio-buttons-group"
+      >
+        <FormControlLabel value="Male" control={<Radio />} label="Male" onClick={() => setgender("male")} />
+        <FormControlLabel value="Female" control={<Radio />} label="Female" onClick={() => setgender("female")} />
+       
+      </RadioGroup>
+    </FormControl>
+
+
+
     <p style={{fontSize:"14px",paddingLeft:"3px"}}> Amount <span style={{fontSize:"10px"}}> (Taxes will be calculated during payment)</span> <b style={{padding:"0px 20px",fontSize:"15px"}}> INR {val.Fare*count}.00</b></p>
     <button style={{cursor:"pointer"}} onClick={booked} className="but-continue"> Proceed to Book</button>
    </ul>
