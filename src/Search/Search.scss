@@ -1,14 +1,32 @@
-.css-o4b71y-MuiAccordionSummary-content{
-    justify-content: end !important;
-}
-.css-yw020d-MuiAccordionSummary-expandIconWrapper{
-    display: none !important;
-}
-.css-1elwnq4-MuiPaper-root-MuiAccordion-root{
-    box-shadow: none !important;
-}
+// .css-o4b71y-MuiAccordionSummary-content{
+//     justify-content: end !important;
+// }
+// .css-yw020d-MuiAccordionSummary-expandIconWrapper{
+//     display: none !important;
+// }
+// .css-1elwnq4-MuiPaper-root-MuiAccordion-root{
+//     box-shadow: none !important;
+// }
 .css-1elwnq4-MuiPaper-root-MuiAccordion-root:before{
     opacity: -2!important;
+}
+
+// .css-17o5nyn{
+//     justify-content: end!important;
+// }
+
+
+.MuiAccordionSummary-content{
+    justify-content: end !important;
+}
+.MuiAccordionSummary-expandIconWrapper{
+    display: none !important;
+}
+.MuiPaper-root-MuiAccordion-root{
+    box-shadow: none !important;
+}
+.MuiPaper-root-MuiAccordion-root:before{
+    opacity: 0!important;
 }
 .but-continue{
     display: inline-block;

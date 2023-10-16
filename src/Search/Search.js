@@ -25,7 +25,9 @@ const Search = () =>{
             
         let [bording1,setbording1] = useState(false)
         let [Boarding,setBoarding] = useState(true)
-        let [Droping,setDroping] = useState(false)         
+        let [Droping,setDroping] = useState(false)  
+        let [details,setdetails] = useState(false)       
+        let [getdetails,setgetdetails] = useState(false)       
         let [arr,setarr] = useState([])
         let [viewarr,setviewarr] = useState([])
         let [viewseats,setviewseats] = useState(true)
@@ -41,6 +43,7 @@ const Search = () =>{
         let [to,setto] = useState("")       
         let [date,setdate] = useState("")  
         let [gender,setgender] = useState("male")        
+        let [name,setname] = useState("")        
 
 
         let [param] = useSearchParams()
@@ -173,7 +176,7 @@ const Search = () =>{
                     
                     if(xh.length>0){
                         // setavailable(false)
-                        setbording1(true)
+                        // setbording1(true)
                         
                       
                       }
@@ -183,6 +186,9 @@ const Search = () =>{
                       if(xh.length===1){
                         setviewarr(dd)
                         setviewseats(false)
+                        setbording1(true)
+                        setdetails(false)
+                        setgetdetails(false)
 
                       }
                       else if(xh.length===0){
@@ -216,6 +222,14 @@ const Search = () =>{
           } 
     
           const booked = () =>{
+            if(name===""){
+              alert("enter the name")
+            }
+            else{
+
+            
+
+
             if(gender === "male"){
             let x = state.busarr.map((vq,i)=>{
               return {...vq,bus:vq.bus.map((va,ind)=>{
@@ -233,11 +247,13 @@ const Search = () =>{
            n('/')
           
           }
+
+
           if(gender==="female"){
             let x = state.busarr.map((vq,i)=>{
               return {...vq,bus:vq.bus.map((va,ind)=>{
                return {...va,seats:va.seats.map((v,index)=>{
-                       return v.isSelect === true ? {...v,isBooked:true,isGender:true}:v
+                     return v.isSelect === true && v.isBooked === false ? {...v,isBooked:true,isGender:true}:v
                         
                       })
                     }  
@@ -249,7 +265,10 @@ const Search = () =>{
             n('/')
             // console.log(x)
           }
-          
+
+
+
+        }
            
            }
 
@@ -258,6 +277,8 @@ const Search = () =>{
     setviewseats(true)
     setDroping(false)
     setBoarding(true)
+    setdetails(false)
+    setgetdetails(false)
    }
 
  const home = () => {
@@ -270,9 +291,11 @@ const Search = () =>{
             if(dropingradio===""){
               setradio1(a)
               setbording1(false)
+              setdetails(true)
             }
             else{ 
               setbording1(false)
+              setdetails(true)
             }           
            }
 
@@ -287,7 +310,11 @@ const Search = () =>{
     setDroping(true)
   }
  }
-  
+  const detailscontinue = () =>{
+    setdetails(false)
+    setgetdetails(true)
+
+  }
  const Fare = () =>{
    setavailable(!available)
 
@@ -337,6 +364,13 @@ const Search = () =>{
     console.log(available)
    }
 }
+
+const handleinput =(e)=>{
+setname(e.target.value)
+
+}
+
+
 
 return(
     <section>
@@ -467,6 +501,7 @@ return(
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
+          sx={{display:"flex"}}
         >
           <Typography component="div" onClick={()=>view(val.busno)}  style={{color:"white",backgroundColor:"#d84e55",padding:"0px 5px",marginBottom:"4px",display:"flex",justifyContent:"end"}}> 
                 View Seats
@@ -583,7 +618,7 @@ return(
               
             </Typography>
       {/* </AccordionSummary> */}
-      <AccordionDetails style={{backgroundColor:"#eeeded",height:"50vh",display:"flex",alignItems:"center"}}>
+      <AccordionDetails style={{backgroundColor:"#eeeded",height:"70vh",display:"flex",alignItems:"center"}}>
         <Typography>
         <Typography component="div" sx={{display:"flex",justifyContent:"space-evenly",alignItems:"center"}}>
 <Typography component="div" sx={{width:"35%",border:"1px solid black",display:"flex",alignItems:"center",justifyContent:"space-evenly",flexWrap:"wrap"}}>
@@ -611,7 +646,8 @@ return(
 
  
 
- {bording1 ? (
+ {bording1  &&
+  <>
 
  <div style={{width:"65%",backgroundColor:"white",marginLeft:"150px"}}>
   <div style={{display:"flex"}}>
@@ -624,6 +660,7 @@ return(
   </div>
 
   <div style={{display:"flex"}}>
+
     {Boarding &&
     <>  
     <ul style={{display:"flex",width:"100%",flexDirection:"column",padding:"0px",margin:"0px"}}>
@@ -671,9 +708,14 @@ return(
     }
 </div>
  </div>
-//  boarding1 true or false 
- ) :
- <div style={{width:"65%",backgroundColor:"white",marginLeft:"150px"}}>
+  {/* boarding1 true or false  */}
+</>
+     }
+
+
+  {details &&
+  <> 
+  <div style={{width:"65%",backgroundColor:"white",marginLeft:"150px"}}>
  <div style={{display:"flex"}}>
    <ul style={{display:"flex",width:"100%",flexDirection:"column",padding:"0px",margin:"0px"}}>    
    <p>Boadring: {boardingradio}</p>
@@ -686,7 +728,20 @@ return(
    })
    }
    </p>
+   <button onClick={()=>detailscontinue()} className="but-continue"> continue</button>
+   </ul>
+</div>
+</div>
+   </>
+  }
 
+  {getdetails && 
+
+<div style={{width:"65%",backgroundColor:"white",marginLeft:"150px",textAlign:"center"}}>
+ {/* <form> */}
+ <h3 style={{cursor:"pointer",display:"inline-block",borderBottom:Boarding? "3px solid red":""}}>Passanger Details</h3> <br/>
+     <span>Full Name:</span>
+     <input onChange={handleinput} type="text" placeholder="Name"/> <br/>
    <FormControl sx={{padding:"0px 15px"}}>
       {/* <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel> */}
       <RadioGroup
@@ -703,14 +758,13 @@ return(
 
 
     <p style={{fontSize:"14px",paddingLeft:"3px"}}> Amount <span style={{fontSize:"10px"}}> (Taxes will be calculated during payment)</span> <b style={{padding:"0px 20px",fontSize:"15px"}}> INR {val.Fare*count}.00</b></p>
-    <button style={{cursor:"pointer"}} onClick={booked} className="but-continue"> Proceed to Book</button>
-   </ul>
+    <button  style={{cursor:"pointer"}} onClick={booked} className="but-continue"> Proceed to Book</button>
+    {/* </form> */}
 </div>
-</div>
+}
 
-
-// boarding1end
-  }
+{/* // boarding1end */}
+  
 
    </Typography>
 </Typography>             
