@@ -25,12 +25,15 @@ export const SearchMobile = () =>{
     let [selectdrop,setselectdrop] = useState(true)
     let [Boarding,setBoarding] = useState(false)
     let [BookedLast,setBookedLast] = useState(false)
+    let [getdetails,setgetdetails] = useState(false)       
 
     let [count,setcount]=useState(0)
     // let [busno,setbusno]=useState(0)
     let [seatno,setseatno]=useState([])
     let [boardingradio,setradio]=useState("")
     let [dropingradio,setradio1]=useState("")     
+    let [gender,setgender] = useState("male")        
+    let [name,setname] = useState("")        
 
     let [param] = useSearchParams()
     let d =param.get('id')
@@ -145,16 +148,17 @@ export const SearchMobile = () =>{
                           alert("The maximum number of seats that can be selected is 6")                         
                         }
                       
-                      if(xh.length>0){                          
+                      if(xh.length===1){                          
                           setbording1(true)                                                 
                         }
 
                         if(xh.length===0){
                           setviewseats(true)
+                          setbording1(false)
                         }
                        
                         else if(xh.length===0){                        
-                          setbording1(false)
+                          // setbording1(false)
                         }
                             }
 
@@ -176,7 +180,16 @@ export const SearchMobile = () =>{
 
   }
 
-    const booked = () =>{
+  const booked = () =>{
+    if(name===""){
+      alert("enter the name")
+    }
+    else{
+
+    
+
+
+    if(gender === "male"){
     let x = state.busarr.map((vq,i)=>{
       return {...vq,bus:vq.bus.map((va,ind)=>{
        return {...va,seats:va.seats.map((v,index)=>{
@@ -186,13 +199,48 @@ export const SearchMobile = () =>{
             }  
         }) 
       }
-    })  
+    })
     console.log(x)
     dispatch(Updatearr(x)) 
     alert("successfully booked")
    n('/')
+  
+  }
+
+
+  if(gender==="female"){
+    let x = state.busarr.map((vq,i)=>{
+      return {...vq,bus:vq.bus.map((va,ind)=>{
+       return {...va,seats:va.seats.map((v,index)=>{
+             return v.isSelect === true && v.isBooked === false ? {...v,isBooked:true,isGender:true}:v
+                
+              })
+            }  
+        }) 
+      }
+    })
+    dispatch(Updatearr(x))
+    alert("successfully booked")
+    n('/')
+    // console.log(x)
+  }
+
+
+
+}
+   
    }
 
+   const godetails = () =>{
+    setBookedLast(false)
+    setgetdetails(true)
+   }
+
+
+   const handleinput =(e)=>{
+    setname(e.target.value)
+    
+    }
   console.log(arr,state,viewarr)
 
     return(
@@ -286,8 +334,18 @@ export const SearchMobile = () =>{
 
 return(
 <>
-{v.isSelect ? (v.isBooked ? <img style={{margin:"5px 10px"}} src={v.unavailable} alt=""/> : <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"5px 10px",color:"black", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"red") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> ) 
-: <img style={{margin:"5px 10px"}} src={v.available} onClick={()=>change(v,i,val.busno)} alt=""/> }
+{v.isSelect ? 
+             (v.isBooked ?  (v.isGender ?  <img style={{margin:"5px 10px"}} src={v.image} alt=""/> :
+              
+              <img style={{margin:"5px 10px"}} src={v.unavailable} alt=""/> ) : 
+  <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"0px 10px",color:"black", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"red") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> )  
+
+  :
+   <img style={{margin:"5px 10px",cursor:"pointer"}} src={v.available} onClick={()=>change(v,i,val.busno)} alt=""/> 
+  }
+
+
+
 </>
 )
 })
@@ -381,8 +439,8 @@ return(
        )
    })}
    </p>   
-    <p style={{fontSize:"12px",paddingLeft:"0px"}}> Amount <b style={{padding:"0px 20px",fontSize:"15px"}}> INR {val.Fare*count}.00</b> <br/><span style={{fontSize:"10px"}}> (Taxes will be calculated during payment)</span> </p>
-    <button onClick={booked} className="but-continue"> Proceed to Book</button>
+   <p style={{fontSize:"14px",paddingLeft:"3px"}}> Amount  <b style={{padding:"0px 70px",fontSize:"15px"}}> INR {val.Fare*count}.00</b></p>
+    <button onClick={godetails} className="but-continue"> Continue</button>
    </ul>
 </div>
 </div>
@@ -390,6 +448,36 @@ return(
 </>
 
 }
+{getdetails && 
+
+<div style={{width:"100%",backgroundColor:"white",textAlign:"center"}}>
+ {/* <form> */}
+ <h3 style={{cursor:"pointer",display:"inline-block",borderBottom:Boarding? "3px solid red":""}}>Passanger Details</h3> <br/>
+     <span>Full Name:</span> <br/>
+
+     <input onChange={handleinput} type="text" placeholder="Name"/> <br/>
+   <FormControl sx={{padding:"0px 15px"}}>
+      {/* <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel> */}
+      <RadioGroup
+        aria-labelledby="demo-radio-buttons-group-label"
+        defaultValue="Male"
+        name="radio-buttons-group"
+      >
+        <FormControlLabel value="Male" control={<Radio />} label="Male" onClick={() => setgender("male")} />
+        <FormControlLabel value="Female" control={<Radio />} label="Female" onClick={() => setgender("female")} />
+       
+      </RadioGroup>
+    </FormControl>
+
+
+
+    <p style={{fontSize:"14px",paddingLeft:"3px"}}> Amount  <b style={{padding:"0px 70px",fontSize:"15px"}}> INR {val.Fare*count}.00</b></p>
+    <button  style={{cursor:"pointer"}} onClick={booked} className="but-continue"> Proceed to Book</button>
+    {/* </form> */}
+</div>
+}
+
+
 </>
 )
 }

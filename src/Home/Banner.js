@@ -79,30 +79,30 @@ console.log(state)
           }
           
 
-          const dateset = (e) =>{
+          // const dateset = (e) =>{
            
-            let today = new Date();
-          console.log(today);
+          //   let today = new Date();
+          // console.log(today);
            
-          let dd = today.getDate();
-          let mm = today.getMonth() + 1;
+          // let dd = today.getDate();
+          // let mm = today.getMonth() + 1;
            
-          let yyyy = today.getFullYear();
+          // let yyyy = today.getFullYear();
            
-          if (dd < 10) {
-              dd = '0' + dd;
-          }
-          if (mm < 10) {
-              mm = '0' + mm;
-          }
-          today = yyyy + '-' + mm + '-' + dd;
+          // if (dd < 10) {
+          //     dd = '0' + dd;
+          // }
+          // if (mm < 10) {
+          //     mm = '0' + mm;
+          // }
+          // today = yyyy + '-' + mm + '-' + dd;
           
-          setdateq(today)
+          // setdateq(today)
            
-          console.log(today);
-            // setValue({startDate: e.target.value})
+          // console.log(today);
+          
 
-          }
+          // }
     
           const submitt =(e)=>{
           // e.preventDefault()

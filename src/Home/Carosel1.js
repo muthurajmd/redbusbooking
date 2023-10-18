@@ -82,14 +82,14 @@ export default class AutoPlay22 extends Component {
       <Slider {...settings}>
 
      <div style={{marginRight:"10px",padding:"1rem",width:"90%"}}>
-       <img src="https://platforms.makemytrip.com/contents/47ef6101-e28f-432a-b794-34bd40a996d3" style={{width:"90%",height:"4.5rem",borderRadius: "0.5rem",marginTop:"5px",marginRight:"25px"}} alt="img"/>
+       <img src="https://platforms.makemytrip.com/contents/47ef6101-e28f-432a-b794-34bd40a996d3" style={{width:"95%",height:"4.5rem",borderRadius: "0.5rem",marginTop:"5px",marginRight:"25px"}} alt="img"/>
      </div>
      <div style={{margin:"10px",padding:"1rem",width:"90%"}}>
-     <img src="https://platforms.makemytrip.com/contents/e8cd4718-5af0-4f63-b650-327b5642d129" style={{width:"90%",height:"4.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
+     <img src="https://platforms.makemytrip.com/contents/e8cd4718-5af0-4f63-b650-327b5642d129" style={{width:"97%",height:"4.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
 
      </div>
      <div style={{margin:"10px",padding:"1rem",width:"90%"}}>
-     <img src="https://platforms.makemytrip.com/contents/7673b5e1-da1a-4a1d-b3b9-c6fe6ade787d" style={{width:"90%",height:"4.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
+     <img src="https://platforms.makemytrip.com/contents/7673b5e1-da1a-4a1d-b3b9-c6fe6ade787d" style={{width:"97%",height:"4.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
      </div>
         </Slider>
         </>

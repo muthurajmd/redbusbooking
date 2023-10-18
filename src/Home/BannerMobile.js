@@ -12,6 +12,13 @@ import AutoPlay22 from "./Carosel1";
 import Carosel2 from "./Carosel2";
 // import { Carosel } from "./Carosel";
 
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
+import { addDays } from 'date-fns';
+
+
 export const BannerMobile = () => {
   const state = useSelector(
     ({task})=>task
@@ -23,6 +30,7 @@ let [from,setfrom]=useState("")
         let [busidd,setbusidd]=useState(0)
         let [obj,setobj]=useState({})
         const [value, setValue] =  useState(new Date());
+        const [startDate, setStartDate] = useState(null);
         
     
         let n=useNavigate()
@@ -47,7 +55,7 @@ let [from,setfrom]=useState("")
             console.log(objj,obj)
           
                 let w=state.busarr.some((a,b)=>{
-                    return from===a.from &&  to === a.to && value.startDate===a.date
+                    return from===a.from &&  to === a.to && startDate
                 })
                 console.log(w)
                 if(w===true){
@@ -122,8 +130,22 @@ let [from,setfrom]=useState("")
             <Typography component="input" type="text" className="form-controlcc" sx={{marginBottom:"5px"}}  placeholder="To" name="to" value={to} onChange={handleinput}>  
              </Typography>
 
-             <Typography component="input" type="Date" className="demo1 form-controlcc" sx={{marginBottom:"5px"}}  placeholder="Date" name="date" onChange={(event) => setValue({startDate: event.target.value})}>  
-             </Typography>
+             {/* <Typography component="input" type="Date" className="demo1 form-controlcc" sx={{marginBottom:"5px"}}  placeholder="Date" name="date" onChange={(event) => setValue({startDate: event.target.value})}>  
+             </Typography> */}
+             <Typography component="div" className="" >  
+  
+  <DatePicker
+  
+   selected={startDate}
+   
+   onChange={(date) => setStartDate(date)}
+   // onChange={dateset}
+   required
+   minDate={new Date()}
+   maxDate={addDays(new Date(), 0)}
+   placeholderText="Date"
+ />
+</Typography>
              <div style={{}}>
              <button className="search-btnt" type="submit" onClick={()=>submitt()} variant="contained" color="error">
   Search

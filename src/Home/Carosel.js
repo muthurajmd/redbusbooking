@@ -136,10 +136,10 @@ export default class AutoPlay extends Component {
         
         return(
         
-             <Typography key={ind} component="div"  sx={{width:"25"}}>
+             <Typography key={ind} component="div"  sx={{width:"25%"}}>
 		<Typography component="div"className={val.class} style={{marginRight:"10px"}}>
 		<Typography component="div" className="d-flex img1 p-2 mt-3" style={{flexDirection:"column",justifyContent: "space-evenly"}}>
-		<Typography component="img" src={val.img} style={{width:"100%",height:"4.5rem",borderRadius: "2.5rem",marginTop:"25px"}} alt="" />
+		<Typography component="img" src={val.img} style={{width:"100%",height:"4.5rem",borderRadius: "1.5rem",marginTop:"25px"}} alt="" />
         </Typography>
 		<Typography component="div" className="description">
 		<Typography component="div" className="text-white" style={{background: "rgba(255, 255, 255, 0.2)",borderradius: "1.25rem",padding: "0.25rem 0.5rem",width: "fit-content",fontSize: "12px",textAlign: "center"}}>{val.bus}</Typography>

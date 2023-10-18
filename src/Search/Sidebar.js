@@ -22,28 +22,32 @@ const Sidebar = () =>{
 
             </div>
 
-            <h5 className=""  style={{}}>Depature Time</h5>
+            <h5 className=""  style={{}}>Sort by</h5>
             <div>
             <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
-               <li><input type="checkbox"></input>
-              <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> Before 6 am (0)</span></li> 
+               <li>
+                {/* <input type="checkbox"></input> */}
+              <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> Fare</span></li> 
                 </ul>
                 <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
-               <li><input type="checkbox"></input>
-              <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> 6 am to 12 pm (13)</span></li> 
+               <li>
+                {/* <input type="checkbox"></input> */}
+              <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> Ratings</span></li> 
                 </ul>
                 <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
-               <li><input type="checkbox"></input>
-              <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> 12 pm to 6 pm (21)</span></li> 
+               <li>
+                {/* <input type="checkbox"></input> */}
+              <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> Duration Time</span></li> 
                 </ul>
                 <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
-               <li><input type="checkbox"></input>
-              <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> After 6 pm (186)</span></li> 
+               <li>
+                {/* <input type="checkbox"></input> */}
+              <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> Departure</span></li> 
                 </ul>
                
             </div>
 
-            <h5 className=""  style={{}}>Bus Type</h5>
+            {/* <h5 className=""  style={{}}>Bus Type</h5>
             <div>
             <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
                <li><input type="checkbox"></input>
@@ -92,7 +96,7 @@ const Sidebar = () =>{
               <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> Single Seat</span></li> 
                 </ul>
                               
-            </div>
+            </div> */}
 
         </Typography>
         

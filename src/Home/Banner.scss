@@ -173,6 +173,19 @@
             color: gray;
         }
     }
+
+    .react-datepicker__input-container{
+        input{
+            border: none;
+            padding: 10px 86px 10px 12px;
+            background-color:#fff;
+            margin-bottom: 5px;
+            background-clip:padding-box;border:1px solid #ced4da;
+            -webkit-appearance:none;
+            -moz-appearance:none;appearance:none;
+            border-radius:.25rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out
+        }
+    }
     
         
     
@@ -208,6 +221,18 @@
         cursor: pointer;
         border: none;
     
+    }
+    .react-datepicker__input-container{
+        input{
+            border: none;
+            padding: 10px 523px 10px 12px;
+            background-color:#fff;
+            margin-bottom: 5px;
+            background-clip:padding-box;border:1px solid #ced4da;
+            -webkit-appearance:none;
+            -moz-appearance:none;appearance:none;
+            border-radius:.25rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out
+        }
     }
 
 

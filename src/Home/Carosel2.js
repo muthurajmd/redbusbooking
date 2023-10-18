@@ -82,25 +82,25 @@ export default class Carosel2 extends Component {
       <Slider {...settings}>
 
       <div style={{margin:"10px",padding:"1rem",width:"90%"}}>
-     <img src="https://st.redbus.in/Images/perzcards/referAndEarn.webp" style={{width:"90%",height:"9.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
+     <img src="https://st.redbus.in/Images/perzcards/referAndEarn.webp" style={{width:"95%",height:"9.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
      </div>
      <div style={{margin:"10px",padding:"1rem",width:"90%"}}>
-     <img src="https://st.redbus.in/Images/perzcards/primo.webp" style={{width:"90%",height:"9.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
+     <img src="https://st.redbus.in/Images/perzcards/primo.webp" style={{width:"95%",height:"9.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
      </div>
 
      <div style={{marginRight:"10px",padding:"1rem",width:"90%"}}>
-       <img src="https://st.redbus.in/Images/home/lightning_fast_refund.png" style={{width:"90%",height:"9.5rem",borderRadius: "0.5rem",marginTop:"5px",marginRight:"25px"}} alt="img"/>
+       <img src="https://st.redbus.in/Images/home/lightning_fast_refund.png" style={{width:"95%",height:"9.5rem",borderRadius: "0.5rem",marginTop:"5px",marginRight:"25px"}} alt="img"/>
      </div>
      <div style={{margin:"10px",padding:"1rem",width:"90%"}}>
-     <img src="https://st.redbus.in/btt/inv/btt_app_card.webp" style={{width:"90%",height:"9.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
+     <img src="https://st.redbus.in/btt/inv/btt_app_card.webp" style={{width:"95%",height:"9.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
 
      </div>
      <div style={{margin:"10px",padding:"1rem",width:"90%"}}>
-     <img src="https://st.redbus.in/Images/perzcards/FlexiTicket.webp" style={{width:"90%",height:"9.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
+     <img src="https://st.redbus.in/Images/perzcards/FlexiTicket.webp" style={{width:"95%",height:"9.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
      </div>
      
      <div style={{margin:"10px",padding:"1rem",width:"90%"}}>
-     <img src="https://st.redbus.in/Images/perzcards/FlexiTicket.webp" style={{width:"90%",height:"9.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
+     <img src="https://st.redbus.in/Images/perzcards/FlexiTicket.webp" style={{width:"95%",height:"9.5rem",borderRadius: "0.5rem",marginTop:"5px"}} alt="img"/>
      </div>
         </Slider>
         </>

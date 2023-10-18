@@ -39,6 +39,8 @@ const Search = () =>{
         let [countt,setcountt]=useState(0)
         let [available,setavailable] = useState(true)          
         let [rating,setRating] = useState(true)   
+        let [duration1,setDuration1] = useState(true)   
+        let [departure1,setdeparture1] = useState(true)   
         let [from,setfrom] = useState("")       
         let [to,setto] = useState("")       
         let [date,setdate] = useState("")  
@@ -322,7 +324,7 @@ const Search = () =>{
   if(available){
     let bybus = [...arr] 
     let ssq= bybus.sort((a,b)=>{
-        return  b.Fare-a.Fare      
+        return  a.Fare-b.Fare      
      } )
      
      setarr(ssq) 
@@ -332,7 +334,7 @@ const Search = () =>{
     
    let bybus = [...arr] 
     let ssq= bybus.sort((a,b)=>{
-        return  a.Fare-b.Fare      
+        return  b.Fare-a.Fare      
      } )
      
      setarr(ssq) 
@@ -358,6 +360,58 @@ const Search = () =>{
   let bybus = [...arr] 
    let ssq= bybus.sort((a,b)=>{
        return  a.Ratings-b.Ratings      
+    } )
+    
+    setarr(ssq) 
+    console.log(available)
+   }
+}
+
+const duration = () =>{
+  setDuration1(!duration1)
+
+ console.log(arr)
+ if(duration1){
+   let bybus = [...arr] 
+   let ssq= bybus.sort((a,b)=>{
+       return  a.Duration1-b.Duration1      
+    } )
+    
+    setarr(ssq) 
+    console.log(countt)
+ }
+ else{
+   
+  let bybus = [...arr] 
+   let ssq= bybus.sort((a,b)=>{
+       return  b.Duration1-a.Duration1      
+    } )
+    
+    setarr(ssq) 
+    console.log(available)
+   }
+}
+
+
+
+const Departuresort = () =>{
+  setdeparture1(!departure1)
+
+ console.log(arr)
+ if(departure1){
+   let bybus = [...arr] 
+   let ssq= bybus.sort((a,b)=>{
+       return  a.Departure1-b.Departure1      
+    } )
+    
+    setarr(ssq) 
+    console.log(countt)
+ }
+ else{
+   
+  let bybus = [...arr] 
+   let ssq= bybus.sort((a,b)=>{
+       return  b.Departure1-a.Departure1      
     } )
     
     setarr(ssq) 
@@ -422,8 +476,55 @@ return(
     <Typography component="div" sx={{display:"flex"}}>
      
        
-      <Sidebar/>
+      {/* <Sidebar/> */}
      
+
+      <Typography component="div" sx={{width:"16%",paddingLeft:"5px"}}>
+        <h4 className="pb-2"  style={{borderBottom:"0.75px solid #ddd",paddingBottom:"3px"}}>FILTER</h4>
+            <div>
+               <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
+                <li className="py-2 d-flex align-items-center" style={{borderBottom:"0.75px solid #ddd"}}>
+                <BsTrainFront/>
+                <span className="ps-2" style={{color:"#3e3e52",fontSize:"12px"}}> Live Tracking</span>
+                </li>
+                <li className="py-2 d-flex align-items-center" style={{borderBottom:"0.75px solid #ddd"}}>
+                <img src={"https://www.redbus.in/images/primo-gif-000000.gif"} alt="" className="pe-2" style={{width:"8%"}}/>
+                <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> Primo Bus</span>
+                </li>
+               </ul>
+
+            </div>
+
+            <h5 className=""  style={{}}>Sort by</h5>
+            <div style={{paddingLeft:"5px"}}>
+            <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
+               <li>
+                {/* <input type="checkbox"></input> */}
+              <span onClick={Fare} className="" style={{color:"#3e3e52",fontSize:"12px",cursor:"pointer"}}> Fare</span></li> 
+                </ul>
+                <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
+               <li>
+                {/* <input type="checkbox"></input> */}
+              <span onClick={Rating} className="" style={{color:"#3e3e52",fontSize:"12px",cursor:"pointer"}}> Ratings</span></li> 
+                </ul>
+                <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
+               <li>
+                {/* <input type="checkbox"></input> */}
+              <span onClick={duration} className="" style={{color:"#3e3e52",fontSize:"12px",cursor:"pointer"}}> Duration Time</span></li> 
+                </ul>
+                <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
+               <li>
+                {/* <input type="checkbox"></input> */}
+              <span onClick={Departuresort} className="" style={{color:"#3e3e52",fontSize:"12px",cursor:"pointer"}}> Departure</span></li> 
+                </ul>
+               
+            </div>
+            </Typography>
+
+
+
+
+
         <Typography component="div" sx={{width:"100%"}}>
           <div>
           {/* <h5 className=""  style={{}}></h5> */}
@@ -432,10 +533,10 @@ return(
                <li>
               <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> 5 Buses Found </span></li> 
               <li> <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> SORT BY: </span></li> 
-              <li> <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> Departure </span></li> 
-              <li> <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> Duration </span></li> 
+              <li> <span onClick={Departuresort} className="" style={{color:"#3e3e52",fontSize:"12px",cursor:"pointer"}}> Departure </span></li> 
+              <li> <span onClick={duration} className="" style={{color:"#3e3e52",fontSize:"12px",cursor:"pointer"}}> Duration </span></li> 
               <li> <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> Arrival </span></li> 
-              <li> <span onClick={Rating} className="" style={{color:"#3e3e52",fontSize:"12px"}}> Ratings </span></li> 
+              <li> <span onClick={Rating} className="" style={{color:"#3e3e52",fontSize:"12px",cursor:"pointer"}}> Ratings </span></li> 
               <li> <span  onClick={Fare} className="" style={{color:"#3e3e52",fontSize:"12px",cursor:"pointer"}}>Fare </span></li> 
               <li>  <span className="" style={{color:"#3e3e52",fontSize:"12px"}}> Seat Availability </span></li> 
                 </ul>
@@ -633,7 +734,9 @@ return(
               <img style={{margin:"5px 10px"}} src={v.unavailable} alt=""/> ) : 
   <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"0px 10px",color:"black", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"red") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> )  
 
-  : <img style={{margin:"5px 10px",cursor:"pointer"}} src={v.available} onClick={()=>change(v,i,val.busno)} alt=""/> }
+  :
+   <img style={{margin:"5px 10px",cursor:"pointer"}} src={v.available} onClick={()=>change(v,i,val.busno)} alt=""/> 
+  }
 </>
 )
 })
