@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/redbusbooking/static/css/main.8da5bfc5.css",
+    "main.css": "/redbusbooking/static/css/main.607013a5.css",
     "main.js": "/redbusbooking/static/js/main.3fd8859b.js",
     "static/js/787.718d1bd2.chunk.js": "/redbusbooking/static/js/787.718d1bd2.chunk.js",
     "static/media/slick.svg": "/redbusbooking/static/media/slick.2630a3e3eab21c607e21.svg",
@@ -8,12 +8,12 @@
     "static/media/slick.ttf": "/redbusbooking/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/redbusbooking/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/redbusbooking/index.html",
-    "main.8da5bfc5.css.map": "/redbusbooking/static/css/main.8da5bfc5.css.map",
+    "main.607013a5.css.map": "/redbusbooking/static/css/main.607013a5.css.map",
     "main.3fd8859b.js.map": "/redbusbooking/static/js/main.3fd8859b.js.map",
     "787.718d1bd2.chunk.js.map": "/redbusbooking/static/js/787.718d1bd2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8da5bfc5.css",
+    "static/css/main.607013a5.css",
     "static/js/main.3fd8859b.js"
   ]
 }
