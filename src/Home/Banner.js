@@ -67,10 +67,11 @@ console.log(state)
 
           
         if(e.target.name==="from"){
-              setfrom((e.target.value).toLowerCase())
+              // setfrom((e.target.value).toLowerCase())
+              setfrom(e.target.value)
             }
             else if(e.target.name==="to"){
-               setto((e.target.value).toLowerCase())
+               setto(e.target.value)
              }
 
 
@@ -134,6 +135,13 @@ console.log(state)
           
     console.log(startDate)
 
+
+    const [age, setAge] = React.useState('');
+
+    const handleChange = (event) => {
+      setAge(event.target.value);
+    };
+
      
   
     return(
@@ -148,11 +156,50 @@ console.log(state)
           <h1 style={{textAlign:"center", fontSize:"35px"}}>India s No. 1 Bus Ticket Booking Site</h1>
             <Box component="div" className="ss" sx={{display:"flex"}}>
 
-          <Typography component="input" type="text" className="form-control from"  placeholder="From" name="from" value={from} onChange={handleinput}>  
-            </Typography>
+          {/* <Typography component="input" type="text" className="form-control from"  placeholder="From" name="from" value={from} onChange={handleinput}>  
+            </Typography> */}
+
+<Box component="div"  sx={{ }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">From</InputLabel>
+        <Select
+          className="form-control from124"
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          // value={age}
+          label="Age"
+          // onChange={handleChange}
+          name="from" value={from} onChange={handleinput}
+        >
+          <MenuItem value={"sankarankovil"} >sankarankovil</MenuItem>
+          <MenuItem value={"madurai"}>madurai</MenuItem>
+          {/* <MenuItem value={30}>Thirty</MenuItem> */}
+        </Select>
+      </FormControl>
+    </Box>
+
+
+    <Box component="div"  sx={{ }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">To</InputLabel>
+        <Select
+          className="form-control to-input124"
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          // value={age}
+          label="Age"
+          // onChange={handleChange}
+          name="to" value={to} onChange={handleinput}
+        >
+          <MenuItem value={"chennai"}>chennai</MenuItem>
+          {/* <MenuItem value={20}>Madurai</MenuItem> */}
+          {/* <MenuItem value={30}>Thirty</MenuItem> */}
+        </Select>
+      </FormControl>
+    </Box>
            
-            <Typography component="input" type="text" className="form-control to-input"  placeholder="To" name="to" value={to} onChange={handleinput}>  
-             </Typography>
+            {/* <Typography component="input" type="text" className="form-control to-input"  placeholder="To" name="to" value={to} onChange={handleinput}>  
+             </Typography> */}
 
              {/* <Typography component="input" type="Date" required min={dateq} max={dateq} className="demo1 form-control to-input"  onClick={dateset}>  
              </Typography> */}

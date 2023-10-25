@@ -11,6 +11,10 @@ import AutoPlay from "./Carosel";
 import AutoPlay22 from "./Carosel1";
 import Carosel2 from "./Carosel2";
 // import { Carosel } from "./Carosel";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 import DatePicker from "react-datepicker";
 
@@ -124,11 +128,51 @@ let [from,setfrom]=useState("")
 
            
 
-            <Typography component="input" type="text" className="form-controlcc" sx={{marginBottom:"5px"}} placeholder="From" name="from" value={from} onChange={handleinput}>  
+
+            <Box component="div"  sx={{marginBottom:"5px"}}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">From</InputLabel>
+        <Select
+          className="form-controlcc"
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          // value={age}
+          label="Age"
+          // onChange={handleChange}
+          name="from" value={from} onChange={handleinput}
+        >
+          <MenuItem value={"sankarankovil"} >sankarankovil</MenuItem>
+          <MenuItem value={"madurai"}>madurai</MenuItem>
+          {/* <MenuItem value={30}>Thirty</MenuItem> */}
+        </Select>
+      </FormControl>
+    </Box>
+
+
+    <Box component="div" sx={{marginBottom:"5px"}}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">To</InputLabel>
+        <Select
+          className="form-controlcc"
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          // value={age}
+          label="Age"
+          // onChange={handleChange}
+          name="to" value={to} onChange={handleinput}
+        >
+          <MenuItem value={"chennai"}>chennai</MenuItem>
+          {/* <MenuItem value={20}>Madurai</MenuItem> */}
+          {/* <MenuItem value={30}>Thirty</MenuItem> */}
+        </Select>
+      </FormControl>
+    </Box>
+
+            {/* <Typography component="input" type="text" className="form-controlcc" sx={{marginBottom:"5px"}} placeholder="From" name="from" value={from} onChange={handleinput}>  
             </Typography>
 
             <Typography component="input" type="text" className="form-controlcc" sx={{marginBottom:"5px"}}  placeholder="To" name="to" value={to} onChange={handleinput}>  
-             </Typography>
+             </Typography> */}
 
              {/* <Typography component="input" type="Date" className="demo1 form-controlcc" sx={{marginBottom:"5px"}}  placeholder="Date" name="date" onChange={(event) => setValue({startDate: event.target.value})}>  
              </Typography> */}

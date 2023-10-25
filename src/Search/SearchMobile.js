@@ -31,9 +31,12 @@ export const SearchMobile = () =>{
     // let [busno,setbusno]=useState(0)
     let [seatno,setseatno]=useState([])
     let [boardingradio,setradio]=useState("")
-    let [dropingradio,setradio1]=useState("")     
+    let [dropingradio,setradio1]=useState("") 
+    let [from,setfrom] = useState("")       
+    let [to,setto] = useState("")          
     let [gender,setgender] = useState("male")        
-    let [name,setname] = useState("")        
+    let [name,setname] = useState("")     
+
 
     let [param] = useSearchParams()
     let d =param.get('id')
@@ -65,7 +68,9 @@ export const SearchMobile = () =>{
   })
 
     let dd = qw.bus
-    setarr(dd)        
+    setarr(dd)       
+    setfrom(qw.from)
+    setto(qw.to)   
    
     }
     useEffect(update,[state.busarr,arr,viewarr])  
@@ -250,11 +255,11 @@ export const SearchMobile = () =>{
                  <Typography component="div" sx={{width:"33%"}}>
                      <Typography component="div" sx={{display:"flex",alignItems:"center"}}>
                      
-                     <span className="fw-bold">Madurai</span>
+                     <span className="fw-bold">{from}</span>
                      <Typography component="div" px={2} >
                      <BsArrowRight/>
                      </Typography>
-                     <span>Chennai</span>                                                  
+                     <span>{to}</span>                                                  
                  </Typography> 
                  </Typography>                                                   
              </Typography>                                               
