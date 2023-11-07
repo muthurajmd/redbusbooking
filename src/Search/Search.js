@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from "react";
 import './Search.scss';
-import { BsArrowRight,BsChevronDown,BsFillPersonFill,BsTrainFront,BsWater,BsFillUsbDriveFill,BsStarFill} from "react-icons/bs";
+import { BsArrowRight,BsChevronDown,BsChevronUp,BsFillPersonFill,BsTrainFront,BsWater,BsFillUsbDriveFill,BsStarFill} from "react-icons/bs";
 import { PiPlugChargingThin,PiTelevisionBold } from "react-icons/pi";
 import { SlClose } from "react-icons/sl";
 import { useDispatch, useSelector } from "react-redux";
@@ -318,53 +318,45 @@ const Search = () =>{
 
   }
  const Fare = () =>{
-   setavailable(!available)
-
-  console.log(arr)
-  if(available){
     let bybus = [...arr] 
     let ssq= bybus.sort((a,b)=>{
         return  a.Fare-b.Fare      
      } )
      
      setarr(ssq) 
-     console.log(countt)
-  }
-  else{
-    
-   let bybus = [...arr] 
-    let ssq= bybus.sort((a,b)=>{
-        return  b.Fare-a.Fare      
-     } )
      
-     setarr(ssq) 
-     console.log(available)
-    }
  }
 
- const Rating = () =>{
-  setRating(!rating)
+ const FareHigh = () =>{
+  
+   let bybus = [...arr] 
+   let ssq= bybus.sort((a,b)=>{
+       return  b.Fare-a.Fare      
+    } )
+    
+    setarr(ssq) 
 
- console.log(arr)
- if(rating){
+}
+
+ const Rating = () =>{
+
    let bybus = [...arr] 
    let ssq= bybus.sort((a,b)=>{
        return  b.Ratings-a.Ratings      
     } )
     
     setarr(ssq) 
-    console.log(countt)
- }
- else{
-   
-  let bybus = [...arr] 
-   let ssq= bybus.sort((a,b)=>{
-       return  a.Ratings-b.Ratings      
-    } )
     
-    setarr(ssq) 
-    console.log(available)
-   }
+}
+const RatingLow = () =>{
+
+  let bybus = [...arr] 
+  let ssq= bybus.sort((a,b)=>{
+      return  b.Ratings-a.Ratings      
+   } )
+   
+   setarr(ssq) 
+   
 }
 
 const duration = () =>{
@@ -471,7 +463,7 @@ return(
              </Typography>                                               
 </Typography>
 
-<section id="side-bar">
+<section id="side-bar" style={{}}>
     <Typography component="div" className="container" style={{width:"100%"}}>
     <Typography component="div" sx={{display:"flex"}}>
      
@@ -479,7 +471,7 @@ return(
       {/* <Sidebar/> */}
      
 
-      <Typography component="div" sx={{width:"16%",paddingLeft:"5px"}}>
+      <Typography component="div" sx={{width:"16%",paddingLeft:"5px",marginRight:"10px"}}>
         <h4 className="pb-2"  style={{borderBottom:"0.75px solid #ddd",paddingBottom:"3px"}}>FILTER</h4>
             <div>
                <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
@@ -497,15 +489,33 @@ return(
 
             <h5 className=""  style={{}}>Sort by</h5>
             <div style={{paddingLeft:"5px"}}>
-            <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
-               <li>
+            <ul style={{padding:"0px",margin:"0px",lineHeight:"3"}}>
+               <li onClick={Fare} style={{display:"flex",alignItems:"center",justifyContent:"space-between",cursor:"pointer"}}>
                 {/* <input type="checkbox"></input> */}
-              <span onClick={Fare} className="" style={{color:"#3e3e52",fontSize:"12px",cursor:"pointer"}}> Fare</span></li> 
+              <span  className="" style={{color:"#3e3e52",fontSize:"12px"}}> Fare Low to High</span>
+              {/* {available ?<BsChevronUp/>:<BsChevronDown/>} */}
+              </li> 
                 </ul>
-                <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
-               <li>
-                {/* <input type="checkbox"></input> */}
-              <span onClick={Rating} className="" style={{color:"#3e3e52",fontSize:"12px",cursor:"pointer"}}> Ratings</span></li> 
+
+                <ul style={{padding:"0px",margin:"0px",lineHeight:"3"}}>
+               <li onClick={FareHigh} style={{display:"flex",alignItems:"center",justifyContent:"space-between",cursor:"pointer"}}>
+                
+              <span  className="" style={{color:"#3e3e52",fontSize:"12px"}}> Fare High to Low</span>
+             
+              </li> 
+                </ul>
+                <ul style={{padding:"0px",margin:"0px",lineHeight:"3"}}>
+               <li onClick={Rating} style={{display:"flex",alignItems:"center",justifyContent:"space-between",cursor:"pointer"}}>
+                
+              <span  className="" style={{color:"#3e3e52",fontSize:"12px",cursor:"pointer"}}> Rating High to Low </span>
+             </li> 
+                </ul>
+
+                <ul style={{padding:"0px",margin:"0px",lineHeight:"3"}}>
+               <li onClick={RatingLow} style={{display:"flex",alignItems:"center",justifyContent:"space-between",cursor:"pointer"}}>
+                
+              <span  className="" style={{color:"#3e3e52",fontSize:"12px",cursor:"pointer"}}> Rating Low to High</span>
+             </li> 
                 </ul>
                 <ul style={{padding:"0px",margin:"0px",lineHeight:"2"}}>
                <li>
@@ -525,8 +535,8 @@ return(
 
 
 
-        <Typography component="div" sx={{width:"100%"}}>
-          <div>
+        <Typography component="div" sx={{width:"80%",marginLeft:"25px"}}>
+          <div className="ss">
           {/* <h5 className=""  style={{}}></h5> */}
             <div>
             <ul style={{display:"flex",justifyContent:"space-between",margin:"0px 25px",padding:"0px",lineHeight:"2"}}>
@@ -546,41 +556,42 @@ return(
   {viewseats ? arr.map((val,i)=>{ 
         return(
 
-            <div className="">
-              <div className="shadow ms-2 my-4" style={{border:"0.5px solid #7a727242",margin:"8px 10px", boxShadow:"0px 8px 10px #aa9fa1" }}>
-               <div style={{display:"flex",justifyContent:"space-between"}}>
+            <div className="shadow123">
+              <div className="ms-2 my-4" style={{border:"0.5px solid #7a727242",margin:"8px 10px" }}>
+               <div className="" style={{display:"flex",justifyContent:"space-between"}}>
                <div  style={{width:"25%"}}>
-                <h5 style={{padding:"0px 10px"}} className="px-2">{val.busname} </h5>
+                <h6 style={{padding:"0px 10px",margin:"15px 0px 7px 0px"}} className="px-2">{val.busname} </h6>
                 <p style={{padding:"0px 10px",color:"gray",fontSize:"14px"}} className="px-2">{val.ac}</p>
                </div>
                <div  style={{width:"10%",paddingLeft:"30px"}}>
-              <h4 className="px-5">{val.Departure} </h4>
-              <p className="px-5">{val.DeparturePlace}</p>
+              <h5 style={{margin:"15px 0px 9px 0px"}} className="px-5">{val.Departure} </h5>
+              <h6 className="px-5" style={{margin:"0px",color:"gray"}}>{val.DeparturePlace}</h6>
              </div>
 
              <div  style={{width:"8%"}}>
-              <h4>{val.Duration}</h4>
+              <h5 style={{fontWeight:100,color:"#7e7e8c",margin:"15px 0px 7px 0px"}}>{val.Duration}</h5>
            
              </div>
              <div  style={{width:"8%"}}>
-              <h4>{val.ArrivalPlace}</h4>
+              <h5 style={{margin:"15px 0px 7px 0px"}}>{val.ArrivalPlace}</h5>
            
              </div>
 
              <div  style={{width:"8%",margin:"18px 0px"}}>
               
-              <p className="px-2" style={{backgroundColor:"#38b87c",color:"white",display:"inline",padding:"2px 8px"}}><span> <BsStarFill/></span> {val.Ratings}</p>
+              <h5 className="px-2" style={{backgroundColor:"#38b87c",color:"white",display:"inline",padding:"2px 8px"}}>
+                <span> <BsStarFill/></span> {val.Ratings}</h5>
              </div>
 
-               <div  style={{width:"8%"}}>
+               <div style={{width:"8%"}}>
                 
                 <p>{val.Fare}</p>
                </div>
 
                <div style={{width:"8%"}} className="col-1">
                 
-                <p>{val.SeatsAvailable}</p>
-                 <p>{val.SeatsWindow}</p>
+                <h5 style={{fontWeight:100,color:"#7e7e8c",margin:"15px 0px 7px 0px"}}>{val.SeatsAvailable}</h5>
+                 <h5 style={{fontWeight:100,color:"#7e7e8c",margin:"0px"}}>{val.SeatsWindow}</h5>
                </div>
                </div>
                <div style={{display:"flex",alignItems:"center",padding:"0px 5px"}}>
@@ -622,7 +633,7 @@ return(
              (v.isBooked ?  (v.isGender ?  <img style={{margin:"5px 10px"}} src={v.image} alt=""/> :
               
               <img style={{margin:"5px 10px"}} src={v.unavailable} alt=""/> ) : 
-  <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"0px 10px",color:"black", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"red") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> )  
+  <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"0px 10px",color:"black", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"#050f56cc") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> )  
 
   : <img style={{margin:"5px 10px",cursor:"pointer"}} src={v.available} onClick={()=>change(v,i,val.busno)} alt=""/> }
   </>
@@ -675,30 +686,31 @@ return(
             <div className="shadow ms-2 my-4" style={{border:"0.5px solid #7a727242",margin:"8px 10px", boxShadow:"0px 8px 10px #aa9fa1" }}>
              <div style={{display:"flex",justifyContent:"space-between"}}>
              <div  style={{width:"25%"}}>
-              <h5 style={{padding:"0px 10px"}} className="px-2">{val.busname} </h5>
-              <p style={{padding:"0px 10px",color:"gray",fontSize:"14px"}} className="px-2">{val.ac}</p>
+             <h6 style={{padding:"0px 10px",margin:"15px 0px 7px 0px"}} className="px-2">{val.busname} </h6>
+                <p style={{padding:"0px 10px",color:"gray",fontSize:"14px"}} className="px-2">{val.ac}</p>
              </div>
              <div  style={{width:"10%",paddingLeft:"30px"}}>
-              <h4 className="px-5">{val.Departure} </h4>
-              <p className="px-5">{val.DeparturePlace}</p>
+             <h5 style={{margin:"15px 0px 9px 0px"}} className="px-5">{val.Departure} </h5>
+              <h6 className="px-5" style={{margin:"0px",color:"gray"}}>{val.DeparturePlace}</h6>
              </div>
 
              <div  style={{width:"8%"}}>
-              <h4>{val.Duration}</h4>
+             <h5 style={{fontWeight:100,color:"#7e7e8c",margin:"15px 0px 7px 0px"}}>{val.Duration}</h5>
            
              </div>
              <div  style={{width:"8%"}}>
-              <h4>{val.ArrivalPlace}</h4>          
+             <h5 style={{margin:"15px 0px 7px 0px"}}>{val.ArrivalPlace}</h5>          
              </div>
              <div  style={{width:"8%",margin:"18px 0px"}}>             
-              <p className="px-2" style={{backgroundColor:"#38b87c",color:"white",display:"inline"}}><span> <BsStarFill/></span> {val.Ratings}</p>
+             <h5 className="px-2" style={{backgroundColor:"#38b87c",color:"white",display:"inline",padding:"2px 8px"}}>
+                <span> <BsStarFill/></span> {val.Ratings}</h5>
              </div>
              <div  style={{width:"8%"}}>             
               <p>{val.Fare}</p>
              </div>
              <div style={{width:"8%"}}>              
-              <p>{val.SeatsAvailable}</p>
-               <p>{val.SeatsWindow}</p>
+             <h5 style={{fontWeight:100,color:"#7e7e8c",margin:"15px 0px 7px 0px"}}>{val.SeatsAvailable}</h5>
+                 <h5 style={{fontWeight:100,color:"#7e7e8c",margin:"0px"}}>{val.SeatsWindow}</h5>
              </div>
              </div>
              <div style={{display:"flex",alignItems:"center",padding:"0px 5px"}}>
@@ -732,7 +744,7 @@ return(
              (v.isBooked ?  (v.isGender ?  <img style={{margin:"5px 10px"}} src={v.image} alt=""/> :
               
               <img style={{margin:"5px 10px"}} src={v.unavailable} alt=""/> ) : 
-  <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"0px 10px",color:"black", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"red") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> )  
+  <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"0px 10px",color:"white", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"#050f56cc") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> )  
 
   :
    <img style={{margin:"5px 10px",cursor:"pointer"}} src={v.available} onClick={()=>change(v,i,val.busno)} alt=""/> 
@@ -752,13 +764,13 @@ return(
  {bording1  &&
   <>
 
- <div style={{width:"65%",backgroundColor:"white",marginLeft:"150px"}}>
+ <div style={{width:"70%",backgroundColor:"white",marginLeft:"150px"}}>
   <div style={{display:"flex"}}>
-  <div style={{width:"50%",textAlign:"center",color:Boarding?"red":"black"}}>
-  <h3 onClick={boarding} style={{cursor:"pointer",display:"inline-block",borderBottom:Boarding? "3px solid red":""}}>Boarding point</h3>
+  <div style={{width:"50%",textAlign:"center",color:Boarding?"#d84e55":"black"}}>
+  <h3 onClick={boarding} style={{cursor:"pointer",display:"inline-block",borderBottom:Boarding? "3px solid #d84e55":""}}>Boarding point</h3>
   </div>
-  <div style={{width:"50%",textAlign:"center",color:Droping?"red":"black"}}>
-  <h3 onClick={dropingg} style={{cursor:"pointer",display:"inline-block",borderBottom:Droping? "3px solid red":""}}>Dropping point</h3>
+  <div style={{width:"50%",textAlign:"center",color:Droping?"#d84e55":"black"}}>
+  <h3 onClick={dropingg} style={{cursor:"pointer",display:"inline-block",borderBottom:Droping? "3px solid #d84e55":""}}>Dropping point</h3>
   </div>
   </div>
 

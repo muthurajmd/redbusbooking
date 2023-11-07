@@ -176,11 +176,13 @@ let [from,setfrom]=useState("")
 
              {/* <Typography component="input" type="Date" className="demo1 form-controlcc" sx={{marginBottom:"5px"}}  placeholder="Date" name="date" onChange={(event) => setValue({startDate: event.target.value})}>  
              </Typography> */}
-             <Typography component="div" className="" >  
+             <Typography component="div" className="" style={{width:"100%"}} >  
   
   <DatePicker
   
    selected={startDate}
+   className=""
+   component="input"
    
    onChange={(date) => setStartDate(date)}
    // onChange={dateset}

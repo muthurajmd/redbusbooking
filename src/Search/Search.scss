@@ -4,11 +4,13 @@
 // .css-yw020d-MuiAccordionSummary-expandIconWrapper{
 //     display: none !important;
 // }
-// .css-1elwnq4-MuiPaper-root-MuiAccordion-root{
-//     box-shadow: none !important;
-// }
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root{
+    box-shadow: none !important;
+}
+
 .css-1elwnq4-MuiPaper-root-MuiAccordion-root:before{
     opacity: -2!important;
+   
 }
 
 // .css-17o5nyn{
@@ -59,5 +61,8 @@
     width: 100%;
     background-color: #d84e55;
     color: #fff;
+}
+.ss .shadow123:hover{
+    box-shadow:10px 8px 15px gray;
 }
 

@@ -316,17 +316,17 @@ export const SearchMobile = () =>{
 
   <div style={{width:"100%"}}>
   <Typography component="div" sx={{width:{xs:"50%",sm:"16%"},lineHeight:"1"}}>
-  <span style={{fontSize:"10px"}}>Available</span>
+  <span style={{fontSize:"10px"}}>Available</span><br></br>
     <span className="mx-2" style={{border: "1px solid #a7a9ac",width:"35px",height:"17px",backgroundColor:"#fff",display:"inline-block"}}></span>
    
   </Typography>
   <Typography component="div" sx={{width:{xs:"50%",sm:"16%"},lineHeight:"1"}}>
-  <span style={{fontSize:"10px"}}>Unavailable</span>
+  <span style={{fontSize:"10px"}}>Unavailable</span><br></br>
     <span className="mx-2" style={{border: "1px solid #a7a9ac",width:"35px",height:"17px",backgroundColor:"#cbcbcb",display:"inline-block"}}></span>
    
   </Typography>
   <Typography component="div" sx={{width:{xs:"50%",sm:"16%"},lineHeight:"1"}}>
-  <span style={{fontSize:"10px"}}>Female</span>
+  <span style={{fontSize:"10px"}}>Female</span><br></br>
     <span className="mx-2" style={{border: "1px solid #f1a9a0",width:"35px",height:"17px",backgroundColor:"#fff",display:"inline-block"}}></span>
     
   </Typography>
@@ -343,7 +343,7 @@ return(
              (v.isBooked ?  (v.isGender ?  <img style={{margin:"5px 10px"}} src={v.image} alt=""/> :
               
               <img style={{margin:"5px 10px"}} src={v.unavailable} alt=""/> ) : 
-  <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"0px 10px",color:"black", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"red") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> )  
+  <button style={{cursor:v.isSelect ? "":"pointer",width:"38px",border:"1px solid black",padding:"0px 0px",margin:"0px 10px",color:"white", backgroundColor:v.isSelect ? (v.isBooked ? "gray":"#050f56cc") :"white"}}  onClick={()=>change(v,i,val.busno)}>{v.id} </button> )  
 
   :
    <img style={{margin:"5px 10px",cursor:"pointer"}} src={v.available} onClick={()=>change(v,i,val.busno)} alt=""/> 

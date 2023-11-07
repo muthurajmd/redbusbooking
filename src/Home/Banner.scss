@@ -141,8 +141,7 @@
         display: flex;
     }
 
-    @media(max-width:576px){
- 
+    @media(max-width:767px){
     .form-controlcc{
         // display:block;
         width:100%;
@@ -206,13 +205,22 @@
         }
     }
 
+    .react-datepicker-wrapper {
+        width:100%;
+    }
+
     .react-datepicker__input-container{
         input{
+            display: inline-block;
+            width: 95%;
+            height: 50px;
             border: none;
-            padding:0.75rem 8.75rem 0.75rem 0.75rem;
+            padding: 0px 0px 0px 15px;
+            // padding:0.75rem 8.75rem 0.75rem 0.75rem;
             background-color:#fff;
             margin-bottom: 5px;
-            background-clip:padding-box;border:1px solid #ced4da;
+            background-clip:padding-box;
+            border:1px solid #ced4da;
             -webkit-appearance:none;
             -moz-appearance:none;appearance:none;
             border-radius:.25rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out
@@ -259,13 +267,22 @@
         border: none;
     
     }
+    .react-datepicker-wrapper {
+        width:100%;
+    }
+
     .react-datepicker__input-container{
         input{
+            display: inline-block;
+            width: 98%;
+            height: 50px;
             border: none;
-            padding: 10px 585px 10px 12px;
+            padding: 0px 0px 0px 15px;
+            // padding:0.75rem 8.75rem 0.75rem 0.75rem;
             background-color:#fff;
             margin-bottom: 5px;
-            background-clip:padding-box;border:1px solid #ced4da;
+            background-clip:padding-box;
+            border:1px solid #ced4da;
             -webkit-appearance:none;
             -moz-appearance:none;appearance:none;
             border-radius:.25rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out
